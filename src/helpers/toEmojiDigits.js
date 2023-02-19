@@ -1,4 +1,4 @@
-const emojiesList = ['0️⃣', '1️⃣', '2️⃣', '3️⃣', '4️⃣', '5️⃣', '6️⃣', '7️⃣', '8️⃣', '9️⃣']; 
+export const emojiesList = ['0️⃣', '1️⃣', '2️⃣', '3️⃣', '4️⃣', '5️⃣', '6️⃣', '7️⃣', '8️⃣', '9️⃣']; 
 
 /**
  * @param {string|number} string
@@ -10,7 +10,7 @@ export const toEmojiDigits = (string) => {
 	string = string.toString();
 
 	for (let i = 0; i < string.length; i++) {
-		string += emojies[string[i]] ?? string[i];
+		replaced += emojiesList[string[i]] ?? string[i];
 	}
 
 	return replaced;

@@ -33,8 +33,10 @@ export const command = {
 		
 		const phrasesKeyboard = [];
 
+		console.log(foundedPhrases)
+
 		for (let i = 0; i < foundedPhrases.length; i++) {
-			const emoji = numbersToEmoji(i);
+			const emoji = toEmojiDigits(i);
 
 			content += '\n' + emoji + ' **|** ' + (foundedPhrases[i][1].length > 20 ?
 				`${foundedPhrases[i][1].slice(0, 17)}...` :
@@ -50,7 +52,7 @@ export const command = {
 			);
 		}
 
-		await ctx.reply({ content, components: phrasesKeyboard });
+		const message = await ctx.reply({ content, components: phrasesKeyboard });
 
 		const filter = i => i.user.id === ctx.user.id;
 		const collector = ctx.channel.createMessageComponentCollector({ filter, time: 60000 });
@@ -64,7 +66,13 @@ export const command = {
 		});
 
 		collector.on('end', async (i) => {
+			for (let row of phrasesKeyboard) {
+				for (let button of row.components) {
+					button.setDisabled(true);
+				}
+			}
 
+			await message.interaction.editReply({ components: phrasesKeyboard });
 		});
 	},
 };
