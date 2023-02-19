@@ -1,10 +1,10 @@
 import { SlashCommandBuilder, ActionRowBuilder, ButtonBuilder as Button, ButtonStyle} from 'discord.js';
 
-import { findPhrase } from '#bot/helpers/findPhrase.js';
 import { resolve } from 'node:path';
 import { cwd } from 'process';
 
-import { numbersToEmoji } from '#bot/helpers/numbersToEmoji.js';
+import { findPhrase } from '#root/helpers/findPhrase.js';
+import { toEmojiDigits } from '#root/helpers/toEmojiDigits.js';
 
 export const command = {
 	data: new SlashCommandBuilder()
